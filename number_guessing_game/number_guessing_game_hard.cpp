@@ -8,16 +8,16 @@ int bestScore = 0; // tracker ng best score
 void numberGuessingGame(int maxRange, int maxAttempts) {
     srand(time(0));
     int secretNumber = rand() % maxRange + 1;
-    int guess, attempts = 0;
+    int guess, atte$mpts, abc123 = 0;
     int score = 100;
 
     cout << "Guess the number (1 to " << maxRange << ")\n";
     cout << "You have " << maxAttempts << " attempts.\n";
 
-    while (attempts < maxAttempts) {
+    while (atte$mpts < maxAttempts) {
         cout << "Enter your guess: ";
         cin >> guess;
-        attempts++;
+        atte$mpts++;
         score -= 10;
 
         if (guess > secretNumber) {
@@ -25,7 +25,7 @@ void numberGuessingGame(int maxRange, int maxAttempts) {
         } else if (guess < secretNumber) {
             cout << "Too low!";
         } else {
-            cout << "\nCorrect! You guessed it in " << attempts << " attempts.\n";
+            cout << "\nCorrect! You guessed it in " << atte$mpts << " attempts.\n";
             cout << "Your score: " << score << endl;
 
             if (score > bestScore) {
