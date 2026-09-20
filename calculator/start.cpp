@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <cmath>
 
 using namespace std;
 
@@ -53,9 +54,9 @@ double onDivide(double n1, double n2)
 
 double onModulo(double n1, double n2)
 {
-    if (static_cast<int>(n2) != 0)
+    if (n2 != 0)
     {
-        return static_cast<int>(n1) % static_cast<int>(n2);
+        return fmod(n1, n2);
     }
     else
     {
@@ -104,15 +105,34 @@ void displayResult(double n1, double n2, const string &op, double result)
     cout << "----------------------------------------" << endl;
 }
 
+double getDoubleInput(const string &prompt)
+{
+    double value;
+    while (true)
+    {
+        cout << prompt;
+        cin >> value;
+        if (cin.fail())
+        {
+            cin.clear(); // clear the error flag
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // discard invalid input
+            cout << "Invalid input. Please enter a valid number." << endl;
+        }
+        else
+        {
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // discard any extra input
+            return value;
+        }
+    }
+}
+
 int main()
 {
     double n1, n2, result;
     string op;
-
-    cout << "Enter First Number: ";
-    cin >> n1;
-    cout << "Enter Second Number: ";
-    cin >> n2;
+    
+    n1 = getDoubleInput("Enter First Number: ");
+    n2 = getDoubleInput("Enter Second Number: ");
     op = getOperation();
     result = getResult(n1, n2, op);
     displayResult(n1, n2, op, result);
